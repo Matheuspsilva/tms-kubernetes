@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frete-service-rs
+  labels:
+    app: frete-service
+spec:
+  replicas: 3 # Defina o número de réplicas desejado
+  selector:
+    matchLabels:
+      app: frete-service
+# Template siginifica que o replicaset vai criar pods com base nesse template
+  template:
+    metadata:
+      labels:
+        app: frete-service # Define o rótulo para os pods
+    spec:
+      containers:
+      - name: frete-service
+        image: "matheuspsilva29/frete-service:1.0.2"
+        ports:
+        - containerPort: 8082

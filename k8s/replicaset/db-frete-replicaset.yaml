@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: db-frete-rs
+  labels:
+    app: db-frete
+spec:
+  replicas: 3  # Defina o número de réplicas desejado
+  selector:
+    matchLabels:
+      app: db-frete  # Seleciona pods com o rótulo 'app: db-frete'
+  template:
+    metadata:
+      labels:
+        app: db-frete  # Define o rótulo para os pods
+    spec:
+      containers:
+      - name: db-frete
+        image: matheuspsilva29/db-frete:1.0.2
+        ports:
+        - containerPort: 5432

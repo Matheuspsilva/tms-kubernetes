@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: motorista-service-rs
+  labels:
+    app: motorista-service
+spec:
+  replicas: 3  # Defina o número de réplicas desejado
+  selector:
+    matchLabels:
+      app: motorista-service  # Seleciona pods com o rótulo 'app: motorista-service'
+  # Template siginifica que o replicaset vai criar pods com base nesse template
+  template:
+    metadata:
+      labels:
+        app: motorista-service  # Define o rótulo para os pods
+    spec:
+      containers:
+      - name: motorista-service
+        image: matheuspsilva29/motorista-service:1.0.0
+        ports:
+        - containerPort: 8081

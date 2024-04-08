@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: db-motorista-rs
+  labels:
+    app: db-motorista
+spec:
+  replicas: 3  # Define o número de réplicas desejado
+  selector:
+    matchLabels:
+      app: db-motorista  # Seleciona pods com o rótulo 'app: db-motorista'
+  template:
+    metadata:
+      labels:
+        app: db-motorista  # Define o rótulo para os pods
+    spec:
+      containers:
+      - name: db-motorista
+        image: matheuspsilva29/db-motorista:1.0.0
+        ports:
+        - containerPort: 5432
