@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frete-service
+spec:
+  selector:
+    app: frete-service
+  ports:
+    - protocol: TCP
+      port: 8082  # Porta do serviço dentro do cluster
+      targetPort: 8082  # Porta do container da aplicação
+  type: NodePort
