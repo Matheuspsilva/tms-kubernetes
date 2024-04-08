@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "frete-service"
+  labels:
+    app: "frete-service"
+spec:
+  containers:
+  - name: "frete-service"
+    image: "matheuspsilva29/frete-service:1.0.2"
+    ports:
+    - containerPort: 8082

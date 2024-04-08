@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "db-motorista"
+  labels:
+    app: "db-motorista"
+spec:
+  containers:
+  - name: "db-motorista"
+    image: "matheuspsilva29/db-motorista:1.0.0"
+    ports:
+    - containerPort: 5432

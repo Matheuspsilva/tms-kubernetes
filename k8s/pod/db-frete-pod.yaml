@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "db-frete"
+  labels:
+    app: "db-frete"
+spec:
+  containers:
+  - name: "db-frete"
+    image: "matheuspsilva29/db-frete:1.0.2"
+    ports:
+    - containerPort: 5432
