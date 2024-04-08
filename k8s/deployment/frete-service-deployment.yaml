@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frete-service-deployment
+  labels:
+    app: frete-service
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: frete-service
+  template:
+    metadata:
+      labels:
+        app: frete-service
+    spec:
+      containers:
+      - name: frete-service
+        image: "matheuspsilva29/frete-service:1.0.2"
+        ports:
+        - containerPort: 8082
+        # readinessProbe:
+        #   httpGet:
+        #     path: /actuator/health
+        #     port: 8082
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 15
+        # livenessProbe:
+        #   httpGet:
+        #     path: /actuator/health
+        #     port: 8082
+        #   initialDelaySeconds: 20
+        #   periodSeconds: 30

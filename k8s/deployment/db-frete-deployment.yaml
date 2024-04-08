@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-frete-deployment
+  labels:
+    app: db-frete
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: db-frete
+  template:
+    metadata:
+      labels:
+        app: db-frete
+    spec:
+      containers:
+      - name: db-frete
+        image: "matheuspsilva29/db-frete:1.0.2"
+        ports:
+        - containerPort: 5432
+        # readinessProbe:
+        #   exec:
+        #     command:
+        #     - /bin/sh
+        #     - -c
+        #     - exec ["/usr/bin/pg_isready", "-U", "postgres"]
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 10

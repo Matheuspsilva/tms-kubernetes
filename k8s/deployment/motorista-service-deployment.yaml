@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motorista-service-deployment
+  labels:
+    app: motorista-service
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: motorista-service
+  template:
+    metadata:
+      labels:
+        app: motorista-service
+    spec:
+      containers:
+      - name: motorista-service
+        image: "matheuspsilva29/motorista-service:1.0.1"
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          httpGet:
+            path: /motoristas
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /motoristas
+            port: 8081
+          initialDelaySeconds: 20
+          periodSeconds: 30
+
